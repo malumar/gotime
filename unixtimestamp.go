@@ -42,6 +42,10 @@ func (t UnixTimestamp) NilIfZero() interface{} {
 	return t.Uint32()
 }
 
+func (t UnixTimestamp) MarshalJSON() ([]byte, error) {
+	return []byte(strconv.FormatUint(uint64(t), 10)), nil
+}
+
 func (t UnixTimestamp) Time() time.Time {
 	return time.Unix(int64(t), 0)
 }
